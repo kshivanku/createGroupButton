@@ -48,6 +48,7 @@
 
       <script type="text/javascript" src="lottie.js"></script>
       <script type="text/javascript">
+        var isReverse = false;
         $(document).ready(function(){
           $("#contentArea").click(function(){
             $("#contentArea").empty();
@@ -56,9 +57,16 @@
           })
           function animate(){
             console.log("in animate function");
-
-              var startFrame = 0;
-              var endFrame =  240;
+              if(!isReverse) {
+                var startFrame = 0;
+                var endFrame =  240;
+                isReverse = true;
+              }
+              else {
+                var startFrame = 240;
+                var endFrame =  0;
+                isReverse = false;
+              }
               var animation_time = 6;
               // var animation_ease = "Power1.easeInOut";
 
