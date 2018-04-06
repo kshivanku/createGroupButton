@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Group Button Animation</title>
+    <style media="screen">
+      * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      *:before,
+      *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      body{
+        padding: 0px;
+        margin: 0px;
+      }
+
+      #contentArea {
+        background-color: #F7F6F9;
+        /* width: 100vw; */
+        height: 100vh;
+        /* max-width: 720px; */
+        margin: auto;
+      }
+
+      img, svg {
+        margin-left: auto;
+	      margin-right: auto;
+	      display: block;
+        height: 100vh;
+      }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="greensock/TimelineMax.min.js"></script>
+    <script type="text/javascript" src="greensock/TweenMax.min.js"></script>
+    <script type="text/javascript" src="greensock/TweenLite.min.js"></script>
+  </head>
+  <body>
+      <div id="contentArea">
+        <img src="pre_image.png">
+      </div>
+
+      <script type="text/javascript" src="lottie.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $("#contentArea").click(function(){
+            $("#contentArea").empty();
+            $("body").css("background-color", "#4463F7");
+            animate();
+          })
+          function animate(){
+            console.log("in animate function");
+
+              var startFrame = 0;
+              var endFrame =  240;
+              var animation_time = 6;
+              // var animation_ease = "Power1.easeInOut";
+
+            var animation = lottie.loadAnimation({
+              container: document.getElementById('contentArea'),
+              renderer: 'svg',
+              loop: false,
+              autoplay: true,
+              path: 'data.json'
+            })
+            var tl = new TimelineMax();
+            tl.to({frame:startFrame}, animation_time, {
+              frame: endFrame,
+              // ease: animation_ease,
+              onStart: function(){
+                console.log("animation: ", animation.totalFrames-1);
+              },
+              onUpdate: function(){
+                animation.goToAndStop(Math.round(this.target.frame), true);
+              },
+              onComplete: function(){
+                console.log("animation complete");
+              }
+            })
+          }
+        })
+      </script>
+  </body>
+</html>
