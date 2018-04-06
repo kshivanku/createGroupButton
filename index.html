@@ -60,14 +60,18 @@
               if(!isReverse) {
                 var startFrame = 0;
                 var endFrame =  240;
+                var path = 'data.json'
                 isReverse = true;
+                var animation_time = 6;
               }
               else {
-                var startFrame = 240;
-                var endFrame =  0;
+                var startFrame = 0;
+                var endFrame =  70;
                 isReverse = false;
+                var animation_time = 1.5;
+                var path = 'data2.json';
               }
-              var animation_time = 6;
+
               // var animation_ease = "Power1.easeInOut";
 
             var animation = lottie.loadAnimation({
@@ -75,7 +79,7 @@
               renderer: 'svg',
               loop: false,
               autoplay: true,
-              path: 'data.json'
+              path: path
             })
             var tl = new TimelineMax();
             tl.to({frame:startFrame}, animation_time, {
